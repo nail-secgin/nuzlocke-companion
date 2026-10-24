@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>Nuzlocke Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class = "title">NUZLOCKE COMPANION</h1>
+    <div class="game-info">
+        <p class = "gen">generation {{ generation_number }}</p>
+        <p class = "edition">edition {{ edition }}</p>
+    </div>
+    <a href="{{ url_for('nuzlocke') }}" class="new_nuzlocke">New Nuzlocke</a>
+    <a href="{{ url_for('load_nuzlocke_page') }}" class="new_nuzlocke">Load Nuzlocke</a>
+</body>
+
+</html>

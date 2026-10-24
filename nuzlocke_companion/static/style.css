@@ -1,0 +1,182 @@
+@font-face {
+    font-family: "THEBOLDFONT";
+    src: url(fonts/THEBOLDFONT.ttf);
+}
+body {
+    background-color: #f4f1ea;
+    font-family: Verdana, sans-serif;
+}
+
+h1 {
+    color:#b33939
+}
+
+.new_nuzlocke {
+    color: #b33939;
+}
+
+
+.title {
+    text-align: center;
+    color: #b33939;
+    text-shadow: 0px 3px 0px black;
+    font-family: "THEBOLDFONT";
+    font-size: 50px;
+    margin-bottom: -30px;
+}
+
+.game-info {
+    display:flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+
+}
+
+.gen {
+    text-align: center;
+    color: #ccae62;
+    font-size: 20px;
+}
+
+.edition {
+    text-align: center;
+    color: #ccae62;
+    font-size: 20px;
+}
+
+
+h2 {
+    color:#b33939
+}
+
+h3 {
+    color:#b33939
+}
+
+.input_field {
+    display: flex;
+    padding: 3px;
+}
+
+.input_field label {
+    width: 150px;
+}
+
+.add_pokemon_title {
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+.current_pokemon {
+    border: 2px solid #ccae62;
+    margin-bottom: 5px;
+    padding: 5px;
+
+}
+
+.all_pokemon {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.button {
+    border: 1px solid #b33939;
+    color: black;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition-duration: 0.4s;
+    background-color: white;
+    font-family: Verdana;
+}
+
+.button:hover {
+    background-color: #b33939;
+    color: #f4f1ea;
+}
+
+.search {
+    padding: 10px;
+    border: 1px solid #b33939;
+    border-radius: 8px;
+    width: fit-content;
+    height: 400px;
+    overflow-y: auto;
+    scrollbar-color: #ccae62 #f4f1ea;
+    scrollbar-width: thin;
+}
+
+.add-current-pokemon {
+    padding: 10px;
+    border: 1px solid #b33939;
+    border-radius: 8px;
+    width: 400px;
+    margin-top: auto;
+    justify-content: center;
+}
+
+.add_pokemon_buttons {
+    display: flex;
+    margin-top: 5px;
+    gap: 10px;
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+}
+
+.search-results {
+    display: flex;
+}
+
+.icon {
+    border: 1px solid #ccae62;
+    size: 50px;
+    
+}
+
+.pokemon_info_label {
+    color: #b33939;
+    font-weight: bold;
+}
+
+.input {
+    border: 1px solid #b33939;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.nuzlocke_select {
+    border: 1px solid #b33939;  
+    border-radius: 5px;
+    margin: 10px;
+    width: fit-content;
+    min-width: 200px;
+    padding: 10px;
+}
+
+
+a {
+    color: #b33939;
+    font-weight: bold;
+    font-size: larger;
+    border: thin solid #ccae62;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #b33939;
+    color: #f4f1ea;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}

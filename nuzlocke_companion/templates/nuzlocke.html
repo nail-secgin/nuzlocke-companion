@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>Create Nuzlocke</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class = "title">NUZLOCKE COMPANION</h1>
+    <div class="game-info">
+        <p class = "gen">generation {{ generation_number }}</p>
+        <p class = "edition">edition {{ edition }}</p>
+    </div>
+    <h2>Which Generation?</h2>
+    <form method="POST">
+        <label for="generation">Generation:</label><br>
+        <select name="generation" id="generation">
+            <option value="">CHOOSE GENERATION</option>
+            <option value="1">Generation 1</option>
+            <option value="2">Generation 2</option>
+            <option value="3">Generation 3</option>
+            <option value="4">Generation 4</option>
+            <option value="5">Generation 5</option>
+            <option value="6">Generation 6</option>
+            <option value="7">Generation 7</option>
+            <option value="8">Generation 8</option>
+        </select>
+        <button type="submit" name="action" value="generation" class="button">Enter Generation</button>
+    </form>
+    {% if generation_number %}
+    <p>You selected Generation {{ generation_number }}</p>
+    <h2>Which Edition?</h2>
+    <form method="POST">
+        <select name="edition" id="edition">
+        <option value="">CHOOSE EDITION</option>
+        {% for item in generation %}
+            <option value="{{item}}">{{item}}</option>
+        {% endfor %}
+        </select>
+        <button type="submit" name="action" value="edition" class="button">Enter Edition</button>
+    </form>
+    {% endif %}
+    {% if edition %}
+    <p>You selected Edition {{ edition.title() }}</p>
+
+    <form method="POST">
+        <div class="input_field">
+            <label for="route">Nuzlocke Name:</label>
+            <input type="text" name="nuzlocke_name" id="nuzlocke_name" class="input"/>
+        </div>
+        <button type="submit" name="action" value="nuzlocke_name" class="button">Enter Name</button>
+    </form>
+
+    {% if nuzlocke_name %} 
+        <p>Your Nuzlocke's name is: {{ nuzlocke_name }}</p>
+    {% endif %}
+    <form method="POST">
+        <button type="submit" name="action" value="start" class="button">Start Nuzlocke</button>
+    </form>
+    {% endif %}
+</body>
+
+</html>

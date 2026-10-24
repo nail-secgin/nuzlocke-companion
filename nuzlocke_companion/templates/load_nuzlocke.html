@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>Create Nuzlocke</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class = "title">NUZLOCKE COMPANION</h1>
+    <div class="game-info">
+        <p class = "gen">generation {{ generation_number }}</p>
+        <p class = "edition">edition {{ edition }}</p>
+    </div>
+
+    <div class="nuzlocke_list">
+    {% for nuzlocke in current_nuzlockes %}
+        <div class="nuzlocke_select">
+            {% if nuzlocke.name %} 
+                <p>Name: {{ nuzlocke.name }}</p> 
+            {% endif %}
+            <p>Edition: {{ nuzlocke.edition.title() }}</p>
+            <p>ID: {{ nuzlocke.id }} </p>
+            <form method="POST">
+                 <input type="hidden" name="nuzlocke_id" value="{{ nuzlocke.id }}">
+                <button type="submit" name="action" value="nuzlocke_button" class="button">Select Nuzlocke</button>
+            </form>
+        </div>     
+    {% endfor %}
+    </div>                   
+</body>
+
+</html>

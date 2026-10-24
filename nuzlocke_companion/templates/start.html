@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html> 
+<head>
+    <title>Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class = "title">NUZLOCKE COMPANION</h1>
+    <div class="game-info">
+        <p class = "gen">generation {{ generation_number }}</p>
+        <p class = "edition">edition {{ edition }}</p>
+    </div>
+
+    <div class="language">
+        <form method="POST">
+            <button type="submit" name="action" value="language_english" class="button">English</button>
+            <button type="submit" name="action" value="language_german" class="button">German</button>
+        </form>
+    </div>
+
+    <div class="main-content">
+
+        <div class="search">
+            <form method="POST">
+                <div class="search-pokemon">
+                    <label for="search_pkmn">Search Pokémon:</label>
+                    <input type="text" name="search_pkmn" id="search_pkmn" class="input" required/>
+                </div>
+                <button type="submit" name="action" value="search_pkmn" class="button">Search Pokémon</button>
+            </form>
+            <div class="search_results">
+
+                {% if search_varieties %}
+                    {% for pokemon in search_varieties %}
+                        <form method="POST">
+                            <input type="hidden" name="pokemon_form" value="{{ pokemon }}">
+                            <button type="submit" name="action" value="select_form" class="button"> {{ pokemon.title() }}</button>
+                        </form>
+                    {% endfor %}
+                {% endif %}
+
+                {% if search_pkmn %}
+                    <h3>{{ display_name_search }}</h3>
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ dex_id}}.png" alt="icon" class="icon">
+                    <h3 class ="types">Types:</h3>
+                    <p>{% if types != None: %} 
+                            {{ types[0].title() }}{% if types | length > 1: %}, {{ types[1].title() }} 
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                    <h3 class ="catchrate">Catchrate:</h3>
+                    <p>{{ catchrate }}</p>
+                    <h3 class ="catchrate">Total Base Stats:</h3>
+                    <p>{{ total_base_stats }}</p>
+                    <div class="abilities">
+                        <h3>Abilities: </h3>
+                            {% for item in abilities %}
+                                <p>{{ item.title() }}</p>
+                            {% endfor %}
+                    </div>    
+                    <form method="POST">
+                        <h3>Moves: </h3>
+                        <div class="enter-level">
+                            <label for="moves_level">Enter level:</label>
+                            <input type="text" name="moves_level" id="moves_level" class="input" required/>
+                        </div>
+                        <button type="submit" name="action" value="moves_level" class="button">Enter Level</button>
+                    </form>
+                    <div class="moves">
+                            {% for i in range(moves["move_name"]|length) %}
+                                <p><span class="pokemon_info_label">Move: </span> {{ moves["move_name"][i].title() }}, <span class="pokemon_info_label">Level: </span>{{ moves["level"][i] }}</p>
+                                
+                            {% endfor %}
+                    </div>
+                {% else %}
+                    <h3>No Pokémon found</h3>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="add-current-pokemon">
+            <h3 class="add_pokemon_title"> Add Pokémon:</h3>
+            <form method="POST">
+                    <div class="input_field">
+                        <label for="name">Pokémon name:</label>
+                        <input type="text" name="name" id="name" class="input" required/>
+                    </div>
+                    
+                    <div class="input_field">
+                        <label for="nickname">Enter nickname:</label>
+                        <input type="text" name="nickname" id="nickname" class="input" required/>
+                    </div>
+
+                    <div class="input_field">
+                        <label for="route">Enter route:</label>
+                        <input type="text" name="route" id="route" class="input" required/>
+                    </div>
+                <div class="add_pokemon_buttons">
+                <button type="submit" name="action" value="add_pokemon" class="button">Add Pokémon</button>
+            </form>
+
+            {% if add_varieties %}
+                    {% for pokemon in add_varieties %}
+                        <form method="POST">
+                            <input type="hidden" name="nickname" value="{{ nickname }}">
+                            <input type="hidden" name="route" value="{{ route }}">
+                            <input type="hidden" name="pokemon_add_form" value="{{ pokemon }}">
+                            <button type="submit" name="action" value="select_add_form" class="button"> {{ pokemon.title() }}</button>
+                        </form>
+                    {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+
+        
+    </div>
+    <div class="pokemon_roster">
+        <h3> Current Pokémon:</h3>
+            <div class="all_pokemon">
+                    {% for pokemon in current_pokemon %}
+                        <div class="current_pokemon">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.dex_id }}.png" alt="icon" class="icon">
+                            <p class="pokemon_info"><span class="pokemon_info_label">Name: </span>{{ pokemon.display_name }}</p>
+                            <p class="pokemon_info"><span class="pokemon_info_label">Nickname: </span>{{ pokemon.nickname.title() }}</p>
+                            <p class="pokemon_info"><span class="pokemon_info_label">Found route: </span>{{ pokemon.route.title() }}</p>
+                            <p class="pokemon_info"><span class="pokemon_info_label">State: </span>
+                                {% if pokemon.state %} Alive
+                                {% else %} Dead 
+                                {% endif %}
+                            </p>
+                        
+                            <form method="POST">
+                                <input type ="hidden" name="pokemon_id" value="{{ pokemon.id }}">
+                                <button type="submit" name="action" value="delete_pkmn" class="button">Delete Pokémon</button>
+                            </form>
+                            <form method="POST">
+                                <input type ="hidden" name="pokemon_id" value="{{ pokemon.id }}">
+                                <button type="submit" name="action" value="pokemon_state" class="button">Change State</button>
+                            </form>
+                        </div>                   
+                    {% endfor %}
+            </div>
+    </div>
+
+</body>
+
+</html>
